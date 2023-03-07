@@ -81,7 +81,7 @@ export default function Allprojects({
           <input
             type="text"
             className="form-control share-input ps-1 dark-blue-background  rounded-0"
-            value="https://co-create-lab/projects/873463903748435623908"
+            value="https://co-create-lab-zoyl.onrender.com/873463903748435623908"
           ></input>
         </div>
         <button
@@ -89,7 +89,7 @@ export default function Allprojects({
           className="btn share-button mt-2"
           onClick={() => {
             navigator.clipboard.writeText(
-              "https://co-create-lab/projects/873463903748435623908"
+              "https://co-create-lab-zoyl.onrender.com/projects/873463903748435623908"
             );
           }}
         >

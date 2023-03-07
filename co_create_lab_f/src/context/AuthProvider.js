@@ -28,7 +28,7 @@ function AuthProvider({ children }) {
 
   useEffect(() => {
     axios
-      .get("https://co-create-lab-backend.onrender.com/projects")
+      .get("https://co-create-lab-zoyl.onrender.com/projects")
       .then((response) => {
         //console.log(response.data);
         setProjects(response.data);
