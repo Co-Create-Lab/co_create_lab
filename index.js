@@ -17,12 +17,12 @@ require("./db");
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-app.use(express.static(path.resolve(__dirname, "co_create_lab_frontend", "build")));
+app.use(express.static(path.resolve(__dirname, "co_create_lab_f", "build")));
 
 
  app.use(
    cors({
-     origin: ["https://co-create-lab.netlify.app", "http://localhost:3000"],
+     origin: ["https://co-create-lab.netlify.app", "http://localhost:3000", "https://co-create-lab-backend.onrender.com", "https://co-create-lab.onrender.com"],
      credentials: true,
    })
  );
@@ -39,7 +39,7 @@ app.use("/projects", projectRouter);
 app.use(errorHandler);
 
 app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "co_create_lab_frontend", "build", "index.html"));
+  res.sendFile(path.join(__dirname, "co_create_lab_f", "build", "index.html"));
  });
  
 
