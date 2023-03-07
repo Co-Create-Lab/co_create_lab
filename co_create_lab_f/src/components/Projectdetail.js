@@ -466,7 +466,7 @@ export default function Projectdetail({
                         radius: 6,
                         show_total: true,
                         size: 30,
-                        url: `http://localhost:3000/projects/${projectdetail._id}`,
+                        url: `/projects/${projectdetail._id}`,
                         image: "https://bit.ly/2CMhCMC",
                         description: "Checkout this awesome project",
                         title: "Checkout this awesome project",
