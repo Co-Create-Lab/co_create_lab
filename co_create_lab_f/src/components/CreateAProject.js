@@ -58,13 +58,11 @@ export default function CreateAProject({ setLoadingSpinner, loadingSpinner }) {
 
   const handleCityChange = async (e) => {
     setLocation(e.target.value);
-    console.log(e.target.value);
     axios
       .get(
         `https://api.mapbox.com/geocoding/v5/mapbox.places/${e.target.value}.json?access_token=${process.env.REACT_APP_API_KEY}&cachebuster=1625641871908&autocomplete=true&types=place`
       )
       .then((response) => {
-        console.log(response.data.features[0]);
         const coordinatesHelper = [
           response.data.features[0].center[1],
           response.data.features[0].center[0],

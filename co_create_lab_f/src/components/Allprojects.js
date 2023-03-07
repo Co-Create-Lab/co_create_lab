@@ -12,7 +12,7 @@ import { BiBarChart } from "react-icons/bi";
 import { BsHeartFill } from "react-icons/bs";
 import Popover from "react-bootstrap/Popover";
 import { AuthContext } from "../context/AuthProvider";
-
+import { InlineShareButtons } from "sharethis-reactjs";
 export default function Allprojects({
   homeCategory,
   setLoadingSpinner,
@@ -75,23 +75,36 @@ export default function Allprojects({
           <div className="dark-blue-background light-gray-text pb-2 ">
             Share your favorite project <br></br>
           </div>
-          <input
-            type="text"
-            className="form-control share-input ps-1 dark-blue-background  rounded-0"
-            value="https://co-create-lab-zoyl.onrender.com/873463903748435623908"
-          ></input>
+          <InlineShareButtons
+            className="bg-light"
+            config={{
+              alignment: "center",
+              color: "white",
+              enabled: true,
+              font_size: 35,
+              language: "en",
+              networks: [
+                "sharethis",
+                "gmail",
+                "linkedin",
+                "twitter",
+                "whatsapp",
+                "messenger",
+              ],
+              padding: 6,
+              radius: 6,
+              show_total: true,
+              size: 30,
+              // url: `/projects/${projectdetail._id}`,
+              image: "https://bit.ly/2CMhCMC",
+              description: "Checkout this awesome project",
+              title: "Checkout this awesome project",
+              message: "Checkout this awesome project",
+              subject: "Checkout this awesome project",
+              username: "custom twitter handle",
+            }}
+          />
         </div>
-        <button
-          type="button"
-          className="btn share-button mt-2"
-          onClick={() => {
-            navigator.clipboard.writeText(
-              "https://co-create-lab-zoyl.onrender.com/projects/873463903748435623908"
-            );
-          }}
-        >
-          Copy
-        </button>
       </Popover.Body>
     </Popover>
   );

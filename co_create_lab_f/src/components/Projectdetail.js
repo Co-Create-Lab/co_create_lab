@@ -105,7 +105,7 @@ export default function Projectdetail({
   //likes
 
   useEffect(() => {
-    axiosClient
+    axios
       .get(`/api/projects/like/${id}`)
       .then((res) => {
         setLikedProjects(res.data);

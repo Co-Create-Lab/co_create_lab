@@ -115,7 +115,6 @@ export default function Filterprojects({
   };
 
   const handleOnChangeKeywordA = (e) => {
-    console.log(e.key);
     if (e.key === "Enter") {
       handleFiltering();
     }

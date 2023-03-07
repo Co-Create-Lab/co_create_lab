@@ -30,13 +30,11 @@ const getPaginateProjects = async (req, res, next) => {
 const getSortedProjects = async (req, res, next) => {
   const { createdAt, start_date, views, likes } = req.query;
 
-  const sort = { };
+  const sort = {};
   if (createdAt) sort.createdAt = createdAt;
   if (start_date) sort.start_date = start_date;
   if (views) sort.views = views;
   // if (likes) sort.likesLenght = likes;
-
-
 
   try {
     const project = await Project.find().sort(sort);
@@ -126,7 +124,7 @@ const createProject = async (req, res, next) => {
     location,
     start_date,
     tech_stack,
-    coordinates
+    coordinates,
   } = req.body;
   const creator = req.user.id;
   try {
@@ -138,10 +136,9 @@ const createProject = async (req, res, next) => {
       start_date,
       tech_stack,
       creator,
-      coordinates
+      coordinates,
     });
     res.status(201).json(project);
-    console.log(project)
   } catch (error) {
     next(error);
   }
