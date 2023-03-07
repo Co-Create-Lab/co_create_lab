@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosClient = axios.create({
-  baseURL: process.env.REACT_APP_BE_URL || '',
+  baseURL: process.env.REACT_APP_BE_URL || "/api",
   withCredentials: true,
 });
 
