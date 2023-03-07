@@ -17,7 +17,7 @@ require("./db");
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-app.use(express.static(path.resolve(__dirname, "client", "build")));
+app.use(express.static(path.resolve(__dirname, "co_create_lab_frontend", "build")));
 
 
  app.use(
@@ -39,7 +39,7 @@ app.use("/projects", projectRouter);
 app.use(errorHandler);
 
 app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  res.sendFile(path.join(__dirname, "co_create_lab_frontend", "build", "index.html"));
  });
  
 
