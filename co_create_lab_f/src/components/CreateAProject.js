@@ -35,8 +35,6 @@ export default function CreateAProject({ setLoadingSpinner, loadingSpinner }) {
   const [convertedContent, setConvertedContent] = useState(null);
   const [coordinates, setCoordinates] = useState([]);
 
-
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -60,20 +58,23 @@ export default function CreateAProject({ setLoadingSpinner, loadingSpinner }) {
 
   const handleCityChange = async (e) => {
     setLocation(e.target.value);
-    console.log(e.target.value)
+    console.log(e.target.value);
     axios
-        .get(
-          `https://api.mapbox.com/geocoding/v5/mapbox.places/${e.target.value}.json?access_token=${process.env.REACT_APP_API_KEY}&cachebuster=1625641871908&autocomplete=true&types=place`
-          )
-        .then((response) => {
-          console.log(response.data.features[0])
-          const coordinatesHelper = [response.data.features[0].center[1], response.data.features[0].center[0]]
-          setCoordinates(coordinatesHelper)
-        })
-        .catch((err) => {
-          console.log(err);
-          navigate("/404");
-        });
+      .get(
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${e.target.value}.json?access_token=${process.env.REACT_APP_API_KEY}&cachebuster=1625641871908&autocomplete=true&types=place`
+      )
+      .then((response) => {
+        console.log(response.data.features[0]);
+        const coordinatesHelper = [
+          response.data.features[0].center[1],
+          response.data.features[0].center[0],
+        ];
+        setCoordinates(coordinatesHelper);
+      })
+      .catch((err) => {
+        console.log(err);
+        navigate("/404");
+      });
 
     if (!location) return;
 
@@ -122,14 +123,14 @@ export default function CreateAProject({ setLoadingSpinner, loadingSpinner }) {
     e.preventDefault();
     // setLoadingSpinner(true);
     await axiosClient
-      .post("/projects", {
+      .post("/api/projects", {
         project_name,
         description,
         categories,
         location,
         start_date,
         tech_stack,
-        coordinates
+        coordinates,
       })
       .then((response) => {
         setNewProjectId(response.data._id);
@@ -147,7 +148,6 @@ export default function CreateAProject({ setLoadingSpinner, loadingSpinner }) {
   const handlereset = () => {
     window.location.reload();
   };
-
 
   return (
     <>
@@ -296,7 +296,6 @@ export default function CreateAProject({ setLoadingSpinner, loadingSpinner }) {
                         <option key={i}>{city}</option>
                       ))}
                     </datalist>
-                 
                   </Form.Group>
                 )}
               </Row>

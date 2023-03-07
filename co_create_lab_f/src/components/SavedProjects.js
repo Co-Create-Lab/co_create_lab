@@ -8,7 +8,7 @@ export default function SavedProjects({
   setBookmarkProjects,
 }) {
   const handleDeleteProject = (id) => {
-    axiosClient.post(`/users/remove`, { projectId: id }).then(() => {
+    axiosClient.post(`/api/users/remove`, { projectId: id }).then(() => {
       const updatedProjects = bookmarkProject.filter(
         (project) => project._id !== id
       );

@@ -6,7 +6,6 @@ import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
 import { FormCheck } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import axiosClient from "../axiosClient";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../context/AuthProvider";
 

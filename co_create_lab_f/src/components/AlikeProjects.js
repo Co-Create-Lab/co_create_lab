@@ -1,30 +1,22 @@
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import { Link, useNavigate } from "react-router-dom";
 import { alikePics } from "../const";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Tooltip from "react-bootstrap/Tooltip";
-import { BiBarChart } from "react-icons/bi";
-import { BsHeartFill } from "react-icons/bs";
 import Popover from "react-bootstrap/Popover";
-import axiosClient from "../axiosClient";
-
-
+import axios from "axios";
 export default function AlikeProjects() {
-
   const { projects, setViews } = useContext(AuthContext);
 
   const nums = new Set();
-    while (nums.size !== 6) {
+  while (nums.size !== 6) {
     nums.add(Math.floor(Math.random() * alikePics.length));
   }
   const uniNums = [...nums];
 
   const shuffled = projects.sort(() => 0.5 - Math.random());
-// Get sub-array of first n elements after shuffled 4 = n = limit 
+  // Get sub-array of first n elements after shuffled 4 = n = limit
   let projectsLimit = shuffled.slice(0, 4);
 
   const sharePopover = (
@@ -78,8 +70,8 @@ export default function AlikeProjects() {
                   className="text-decoration-none"
                   onClick={() => {
                     try {
-                      axiosClient
-                        .post(`/projects/view`, {
+                      axios
+                        .post(`/api/projects/view`, {
                           id: element._id,
                         })
                         .then((res) => {
@@ -95,14 +87,13 @@ export default function AlikeProjects() {
                       <Card.Title className="dark-blue-text light-gray-background home-card-title ">
                         {element.project_name}
                       </Card.Title>
-                     
+
                       <div className="light-gray-background">
                         <Card.Img
                           className="home-cardimg"
                           src={alikePics[uniNums[i]]}
                         />
                       </div>
-                      
                     </Card.Body>
                   </Card>
                 </a>

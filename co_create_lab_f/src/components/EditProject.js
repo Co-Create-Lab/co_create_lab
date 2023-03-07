@@ -129,7 +129,7 @@ export default function EditProject({
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axiosClient
-      .put(`/projects/${project._id}`, {
+      .put(`/api/projects/${project._id}`, {
         project_name,
         description,
         categories,

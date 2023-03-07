@@ -25,7 +25,7 @@ import Tooltip from "react-bootstrap/Tooltip";
 import { InlineShareButtons } from "sharethis-reactjs";
 import AlikeProjects from "./AlikeProjects";
 import { toast } from "react-toastify";
-
+import axios from "axios";
 export default function Projectdetail({
   setLoadingSpinner,
   loadingSpinner,
@@ -49,7 +49,7 @@ export default function Projectdetail({
     setLoadingSpinner(true);
     const fetchProjects = async () => {
       try {
-        const response = await axiosClient.get(`/projects/${id}`);
+        const response = await axios.get(`/api/projects/${id}`);
         const project = response.data;
         setProjectdetail(project);
         setLoadingSpinner(false);
@@ -64,7 +64,7 @@ export default function Projectdetail({
 
   useEffect(() => {
     axiosClient
-      .get(`/users/bookmarks`)
+      .get(`/api/users/bookmarks`)
       .then((res) => {
         setBookmarkProjects(res.data);
         if (res.data.find((project) => project._id === id)) {
@@ -80,7 +80,7 @@ export default function Projectdetail({
     const isBookmarked = bookmarkProject.find((project) => project._id === id);
     if (isBookmarked) {
       axiosClient
-        .post(`/users/remove`, { projectId: id })
+        .post(`/api/users/remove`, { projectId: id })
         .then((res) => {
           setBookmarkProjects(res.data);
           toast.success("Project was removed.");
@@ -90,7 +90,7 @@ export default function Projectdetail({
         });
     } else {
       axiosClient
-        .post(`/users/bookmarks`, { projectId: id })
+        .post(`/api/users/bookmarks`, { projectId: id })
         .then((res) => {
           setBookmarkProjects(res.data);
           toast.success("Project was saved.");
@@ -106,7 +106,7 @@ export default function Projectdetail({
 
   useEffect(() => {
     axiosClient
-      .get(`/projects/like/${id}`)
+      .get(`/api/projects/like/${id}`)
       .then((res) => {
         setLikedProjects(res.data);
         if (res.data.includes(user?._id)) {
@@ -123,7 +123,7 @@ export default function Projectdetail({
 
     if (findLike) {
       axiosClient
-        .post(`/projects/removelike`, { projectId: id })
+        .post(`/api/projects/removelike`, { projectId: id })
         .then((res) => {
           setLikedProjects(res.data);
           setLikeIcon(false);
@@ -134,7 +134,7 @@ export default function Projectdetail({
         });
     } else {
       axiosClient
-        .post(`/projects/like`, { projectId: id })
+        .post(`/api/projects/like`, { projectId: id })
         .then((res) => {
           setLikedProjects(res.data);
           setLikeIcon(true);

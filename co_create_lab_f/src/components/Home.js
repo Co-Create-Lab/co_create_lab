@@ -9,7 +9,6 @@ import { Helmet } from "react-helmet";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import axiosClient from "../axiosClient";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Spinner from "./Spinner";
@@ -23,8 +22,8 @@ export default function Home({ setLoadingSpinner, loadingSpinner, setShow }) {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    axiosClient
-      .get("/projects/sort?createdAt=-1")
+    axios
+      .get("/api/projects/sort?createdAt=-1")
       .then((response) => {
         setProjects(response.data);
       })
@@ -279,8 +278,8 @@ export default function Home({ setLoadingSpinner, loadingSpinner, setShow }) {
                     className="text-decoration-none"
                     onClick={() => {
                       try {
-                        axiosClient
-                          .post(`/projects/view`, {
+                        axios
+                          .post(`/api/projects/view`, {
                             id: mostLiked._id,
                           })
                           .then((res) => {
@@ -333,8 +332,8 @@ export default function Home({ setLoadingSpinner, loadingSpinner, setShow }) {
                   className="text-decoration-none"
                   onClick={() => {
                     try {
-                      axiosClient
-                        .post(`/projects/view`, {
+                      axios
+                        .post(`/api/projects/view`, {
                           id: mostClicked._id,
                         })
                         .then((res) => {
@@ -423,8 +422,8 @@ export default function Home({ setLoadingSpinner, loadingSpinner, setShow }) {
                   className="text-decoration-none"
                   onClick={() => {
                     try {
-                      axiosClient
-                        .post(`/projects/view`, {
+                      axios
+                        .post(`/api/projects/view`, {
                           id: remote._id,
                         })
                         .then((res) => {
@@ -477,8 +476,8 @@ export default function Home({ setLoadingSpinner, loadingSpinner, setShow }) {
                     className="text-decoration-none"
                     onClick={() => {
                       try {
-                        axiosClient
-                          .post(`/projects/view`, {
+                        axios
+                          .post(`/api/projects/view`, {
                             id: newest._id,
                           })
                           .then((res) => {

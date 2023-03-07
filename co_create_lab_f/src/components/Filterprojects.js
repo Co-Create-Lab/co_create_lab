@@ -7,7 +7,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Select, { clearValue, clear, InputActionMeta } from "react-select";
 import { useNavigate } from "react-router-dom";
-import axiosClient from "../axiosClient";
 
 export default function Filterprojects({
   setProjects,
@@ -89,9 +88,9 @@ export default function Filterprojects({
   const sort = (e) => {
     e.preventDefault();
     setLoadingSpinner(true);
-    axiosClient
+    axios
       .get(
-        `/projects/sort?start_date=${sortCriteriaStartDate}&createdAt=${sortCriteriaCreatedAt}&views=${sortCriteriaViews}&likes=${sortCriteriaLikes}`
+        `/api/projects/sort?start_date=${sortCriteriaStartDate}&createdAt=${sortCriteriaCreatedAt}&views=${sortCriteriaViews}&likes=${sortCriteriaLikes}`
       )
       .then((response) => {
         setProjects(response.data);
@@ -105,7 +104,7 @@ export default function Filterprojects({
   };
 
   const reset = () => {
-    navigate('/projects')
+    navigate("/projects");
     window.location.reload();
   };
 
@@ -113,13 +112,12 @@ export default function Filterprojects({
 
   const handleOnChangeKeyword = (e) => {
     setKeyword(e.target.value);
-    
   };
 
   const handleOnChangeKeywordA = (e) => {
     console.log(e.key);
-    if (e.key === 'Enter') {
-      handleFiltering()
+    if (e.key === "Enter") {
+      handleFiltering();
     }
   };
 
@@ -179,9 +177,9 @@ export default function Filterprojects({
   const handleFiltering = (e) => {
     // e.preventDefault();
     setLoadingSpinner(true);
-    axiosClient
+    axios
       .get(
-        `/projects/search?keyword=${keyword}&location=${location}&start_date=${start_date}&categories=${categories}&tech_stack=${tech_stack}`,
+        `/api/projects/search?keyword=${keyword}&location=${location}&start_date=${start_date}&categories=${categories}&tech_stack=${tech_stack}`,
         {
           keyword,
           categories,
@@ -203,10 +201,10 @@ export default function Filterprojects({
       });
   };
 
-const filterSort = (e) => {
-    axiosClient
+  const filterSort = (e) => {
+    axios
       .get(
-        `/projects/search/sort?keyword=${keyword}&location=${location}&start_dateF=${start_date}&categories=${categories}&tech_stack=${tech_stack}&start_date=${sortCriteriaStartDate}&createdAt=${sortCriteriaCreatedAt}&views=${sortCriteriaViews}&likes=${sortCriteriaLikes}`,
+        `/api/projects/search/sort?keyword=${keyword}&location=${location}&start_dateF=${start_date}&categories=${categories}&tech_stack=${tech_stack}&start_date=${sortCriteriaStartDate}&createdAt=${sortCriteriaCreatedAt}&views=${sortCriteriaViews}&likes=${sortCriteriaLikes}`,
         {
           keyword,
           categories,
@@ -216,7 +214,7 @@ const filterSort = (e) => {
           sortCriteriaCreatedAt,
           sortCriteriaStartDate,
           sortCriteriaLikes,
-          setSortCriteriaViews
+          setSortCriteriaViews,
         }
       )
       .then((response) => {
@@ -230,8 +228,6 @@ const filterSort = (e) => {
         navigate("/404");
       });
   };
-
-
 
   return (
     <>

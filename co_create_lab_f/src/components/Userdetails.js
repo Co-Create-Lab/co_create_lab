@@ -19,7 +19,7 @@ export default function Userdetails({
   const handleShow = () => setShow(true);
 
   const deleteProject = (id, e) => {
-    axiosClient.delete(`projects/${id}`).then((res) => {
+    axiosClient.delete(`/api/projects/${id}`).then((res) => {
       const deletedProject = userProjects.filter((pro) => pro._id !== id);
       setUserProjects(deletedProject);
     });

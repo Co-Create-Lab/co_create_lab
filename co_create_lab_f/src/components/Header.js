@@ -1,5 +1,4 @@
 import { Link, useNavigate } from "react-router-dom";
-import axiosClient from "../axiosClient";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
 import { Avatar } from "@mui/material";

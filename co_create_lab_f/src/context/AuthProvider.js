@@ -15,7 +15,7 @@ function AuthProvider({ children }) {
 
   useEffect(() => {
     axiosClient
-      .get(`/users/profile`)
+      .get(`/api/users/profile`)
       .then((response) => {
         setUser(response.data);
         setLoading(false);
@@ -28,7 +28,7 @@ function AuthProvider({ children }) {
 
   useEffect(() => {
     axios
-      .get("https://co-create-lab-zoyl.onrender.com/projects")
+      .get("/api/projects")
       .then((response) => {
         //console.log(response.data);
         setProjects(response.data);
@@ -40,7 +40,7 @@ function AuthProvider({ children }) {
 
   const login = ({ ...loginData }) => {
     axiosClient
-      .post("/auth/login", {
+      .post("/api/auth/login", {
         ...loginData,
       })
       .then((res) => {
@@ -56,7 +56,7 @@ function AuthProvider({ children }) {
 
   const signup = ({ ...userData }) => {
     axiosClient
-      .post("/auth/signup", {
+      .post("/api/auth/signup", {
         ...userData,
       })
       .then((res) => {
@@ -71,7 +71,7 @@ function AuthProvider({ children }) {
   };
 
   const logout = () => {
-    axiosClient.post("/auth/logout").then((res) => {
+    axiosClient.post("/api/auth/logout").then((res) => {
       setUser(null);
       navigate("/");
       toast.success("Logout successful");

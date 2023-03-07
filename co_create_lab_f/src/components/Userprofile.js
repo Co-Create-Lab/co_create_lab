@@ -32,7 +32,7 @@ export default function Userprofile({ bookmarkProject, setBookmarkProjects }) {
 
   useEffect(() => {
     axiosClient
-      .get(`/projects/myprojects/${user._id}`)
+      .get(`/api/projects/myprojects/${user._id}`)
       .then((response) => {
         setUserProjects(response.data);
       })
@@ -59,7 +59,7 @@ export default function Userprofile({ bookmarkProject, setBookmarkProjects }) {
 
   useEffect(() => {
     axiosClient
-      .get(`/users/bookmarks`)
+      .get(`/api/users/bookmarks`)
       .then((res) => {
         setBookmarkProjects(res.data);
       })

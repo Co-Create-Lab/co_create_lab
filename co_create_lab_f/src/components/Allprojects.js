@@ -3,7 +3,6 @@ import { useState, useEffect, useContext } from "react";
 import dateFormat, { masks } from "dateformat";
 import { Link, useNavigate } from "react-router-dom";
 import Filterprojects from "./Filterprojects";
-import axiosClient from "../axiosClient";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import axios from "axios";
@@ -12,9 +11,7 @@ import Pagination from "./Pagination";
 import { BiBarChart } from "react-icons/bi";
 import { BsHeartFill } from "react-icons/bs";
 import Popover from "react-bootstrap/Popover";
-import Button from "react-bootstrap/Button";
 import { AuthContext } from "../context/AuthProvider";
-
 
 export default function Allprojects({
   homeCategory,
@@ -24,7 +21,7 @@ export default function Allprojects({
   const { views, setViews } = useContext(AuthContext);
   const [searchResult, setSearchResult] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
-  const [projects, setProjects] = useState([])
+  const [projects, setProjects] = useState([]);
   const [showPagination, setShowPagination] = useState(true);
 
   const navigate = useNavigate();
@@ -32,9 +29,9 @@ export default function Allprojects({
   useEffect(() => {
     if (homeCategory) {
       setLoadingSpinner(true);
-      axiosClient
+      axios
         .get(
-          `/projects/search/sort?categories=${homeCategory}&createdAt=-1`
+          `/api/projects/search/sort?categories=${homeCategory}&createdAt=-1`
         )
         .then((response) => {
           setProjects(response.data);
@@ -48,8 +45,8 @@ export default function Allprojects({
         });
     } else {
       setLoadingSpinner(true);
-      axiosClient
-        .get("/projects/paginate?offset=0&limit=5")
+      axios
+        .get("/api/projects/paginate?offset=0&limit=5")
         .then((response) => {
           setProjects(response.data.project);
           setTotalCount(response.data.count);
@@ -146,8 +143,8 @@ export default function Allprojects({
                             className="overview-title bg-light"
                             onClick={() => {
                               try {
-                                axiosClient
-                                  .post(`/projects/view`, {
+                                axios
+                                  .post(`/api/projects/view`, {
                                     id: project._id,
                                   })
                                   .then((res) => {
@@ -389,8 +386,8 @@ export default function Allprojects({
                               <button
                                 onClick={() => {
                                   try {
-                                    axiosClient
-                                      .post(`/projects/view`, {
+                                    axios
+                                      .post(`/api/projects/view`, {
                                         id: project._id,
                                       })
                                       .then((res) => {

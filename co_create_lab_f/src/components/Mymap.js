@@ -9,11 +9,9 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { Link, useNavigate } from "react-router-dom";
 import { alikePics } from "../const";
-import axiosClient from "../axiosClient";
 import { Helmet } from "react-helmet";
 import { BiArrowBack } from "react-icons/bi";
-
-
+import axios from "axios";
 export default function Mymap() {
   const { projects, setViews } = useContext(AuthContext);
   const [overlay, setOverlay] = useState([]);
@@ -25,7 +23,6 @@ export default function Mymap() {
   const [style, setStyle] = useState("home-map");
   const [backbtnstyle, setBackbtnstyle] = useState("disabled");
 
-
   useEffect(() => {
     if (window.location.pathname !== "/projects/onsite") {
       setMapSize(300);
@@ -33,7 +30,6 @@ export default function Mymap() {
     if (window.location.pathname === "/projects/onsite") {
       setStyle("map");
       setBackbtnstyle("map-back-div w-100");
-
     }
   });
 
@@ -56,7 +52,7 @@ export default function Mymap() {
     }
   };
 
-  const onsiteProjects = projects.filter(function (project) {
+  const onsiteProjects = projects?.filter(function (project) {
     return project.location !== "remote";
   });
 
@@ -65,7 +61,6 @@ export default function Mymap() {
   const goBack = () => {
     navigate(-1);
   };
-
 
   return (
     <>
@@ -89,8 +84,8 @@ export default function Mymap() {
                   className="text-decoration-none"
                   onClick={() => {
                     try {
-                      axiosClient
-                        .post(`/projects/view`, {
+                      axios
+                        .post(`/api/projects/view`, {
                           id: overlayInput._id,
                         })
                         .then((res) => {
@@ -103,7 +98,6 @@ export default function Mymap() {
                 >
                   <Card className="shadow-lg dark-blue-background map-card">
                     <Card.Body className="dark-blue-background rounded p-2">
-
                       <Card.Title className="dark-blue-text dark-blue-background fs-6 light-gray-text">
                         {overlayInput.project_name}
                       </Card.Title>
