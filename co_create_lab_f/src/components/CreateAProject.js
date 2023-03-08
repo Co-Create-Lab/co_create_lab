@@ -15,7 +15,6 @@ import { EditorState } from "draft-js";
 import { convertToHTML } from "draft-convert";
 import Spinner from "./Spinner";
 import { toast } from "react-toastify";
-import axios from "axios";
 
 export default function CreateAProject({ setLoadingSpinner, loadingSpinner }) {
   const [project_name, setName] = useState("");
@@ -58,7 +57,7 @@ export default function CreateAProject({ setLoadingSpinner, loadingSpinner }) {
 
   const handleCityChange = async (e) => {
     setLocation(e.target.value);
-    axios
+    axiosClient
       .get(
         `https://api.mapbox.com/geocoding/v5/mapbox.places/${e.target.value}.json?access_token=${process.env.REACT_APP_API_KEY}&cachebuster=1625641871908&autocomplete=true&types=place`
       )

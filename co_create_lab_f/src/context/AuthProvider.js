@@ -2,7 +2,6 @@ import { createContext, useState, useEffect } from "react";
 import axiosClient from "../axiosClient";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import axios from "axios";
 
 export const AuthContext = createContext();
 
@@ -27,7 +26,7 @@ function AuthProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    axios
+    axiosClient
       .get("/api/projects")
       .then((response) => {
         //console.log(response.data);
