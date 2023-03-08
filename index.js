@@ -25,6 +25,7 @@ app.use(
       "http://localhost:3000",
       "https://co-create-lab-backend.onrender.com",
       "https://co-create-lab.onrender.com",
+      "https://api.mapbox.com/"
     ],
     credentials: true,
   })
