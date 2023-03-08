@@ -110,8 +110,8 @@ export default function Allprojects({
   );
 
   return (
-    <div className="">
-      <div className=" container-fluid mx-auto ">
+    <div className="w-100">
+      <div className=" container ">
         <div className="row mt-2">
           <div className="col-sm-5 col-md-4 col-lg-3 pe-xl-5 pe-md-3 ms-4 ">
             <Filterprojects
