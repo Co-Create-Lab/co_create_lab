@@ -466,7 +466,7 @@ export default function Projectdetail({
                         radius: 6,
                         show_total: true,
                         size: 30,
-                        url: `/projects/${projectdetail._id}`,
+                        url: window.location.href,
                         image: "https://bit.ly/2CMhCMC",
                         description: "Checkout this awesome project",
                         title: "Checkout this awesome project",
