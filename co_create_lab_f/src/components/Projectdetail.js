@@ -116,7 +116,7 @@ export default function Projectdetail({
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [likedProject]);
 
   const handleLike = () => {
     const findLike = likedProject.includes(user._id);
@@ -292,7 +292,7 @@ export default function Projectdetail({
                         >
                           <button className="position-relative view-icon">
                             <span className="position-absolute top-0 start-100 translate-middle badge view-icon-text">
-                              {projectdetail.likes?.length}
+                              {likedProject?.length}
                               <span className="visually-hidden">likes</span>
                             </span>
                             <BsHeartFill
