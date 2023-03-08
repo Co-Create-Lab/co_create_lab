@@ -49,7 +49,7 @@ export default function Projectdetail({
     setLoadingSpinner(true);
     const fetchProjects = async () => {
       try {
-        const response = await axios.get(`/api/projects/${id}`);
+        const response = await axiosClient.get(`/api/projects/${id}`);
         const project = response.data;
         setProjectdetail(project);
         setLoadingSpinner(false);
@@ -105,7 +105,7 @@ export default function Projectdetail({
   //likes
 
   useEffect(() => {
-    axios
+    axiosClient
       .get(`/api/projects/like/${id}`)
       .then((res) => {
         setLikedProjects(res.data);

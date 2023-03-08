@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 import Filterprojects from "./Filterprojects";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-import axios from "axios";
 import Spinner from "./Spinner";
 import Pagination from "./Pagination";
 import { BiBarChart } from "react-icons/bi";
@@ -13,6 +12,7 @@ import { BsHeartFill } from "react-icons/bs";
 import Popover from "react-bootstrap/Popover";
 import { AuthContext } from "../context/AuthProvider";
 import { InlineShareButtons } from "sharethis-reactjs";
+import axiosClient from "../axiosClient";
 export default function Allprojects({
   homeCategory,
   setLoadingSpinner,
@@ -29,7 +29,7 @@ export default function Allprojects({
   useEffect(() => {
     if (homeCategory) {
       setLoadingSpinner(true);
-      axios
+      axiosClient
         .get(
           `/api/projects/search/sort?categories=${homeCategory}&createdAt=-1`
         )
@@ -45,7 +45,8 @@ export default function Allprojects({
         });
     } else {
       setLoadingSpinner(true);
-      axios
+      axiosClient
+
         .get("/api/projects/paginate?offset=0&limit=5")
         .then((response) => {
           setProjects(response.data.project);
@@ -156,7 +157,7 @@ export default function Allprojects({
                             className="overview-title bg-light"
                             onClick={() => {
                               try {
-                                axios
+                                axiosClient
                                   .post(`/api/projects/view`, {
                                     id: project._id,
                                   })
@@ -399,7 +400,7 @@ export default function Allprojects({
                               <button
                                 onClick={() => {
                                   try {
-                                    axios
+                                    axiosClient
                                       .post(`/api/projects/view`, {
                                         id: project._id,
                                       })

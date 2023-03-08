@@ -5,7 +5,7 @@ import { alikePics } from "../const";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
 import Popover from "react-bootstrap/Popover";
-import axios from "axios";
+import axiosClient from "../axiosClient";
 export default function AlikeProjects() {
   const { projects, setViews } = useContext(AuthContext);
 
@@ -70,7 +70,7 @@ export default function AlikeProjects() {
                   className="text-decoration-none"
                   onClick={() => {
                     try {
-                      axios
+                      axiosClient
                         .post(`/api/projects/view`, {
                           id: element._id,
                         })

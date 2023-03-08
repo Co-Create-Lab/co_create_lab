@@ -12,6 +12,7 @@ import { alikePics } from "../const";
 import { Helmet } from "react-helmet";
 import { BiArrowBack } from "react-icons/bi";
 import axios from "axios";
+import axiosClient from "../axiosClient";
 export default function Mymap() {
   const { projects, setViews } = useContext(AuthContext);
   const [overlay, setOverlay] = useState([]);
@@ -84,7 +85,7 @@ export default function Mymap() {
                   className="text-decoration-none"
                   onClick={() => {
                     try {
-                      axios
+                      axiosClient
                         .post(`/api/projects/view`, {
                           id: overlayInput._id,
                         })

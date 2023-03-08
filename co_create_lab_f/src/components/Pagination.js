@@ -1,7 +1,7 @@
 import ReactPaginate from "react-paginate";
-import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axiosClient from "../axiosClient";
 
 export default function Pagination({
   totalCount,
@@ -29,7 +29,7 @@ export default function Pagination({
     //   `User requested page number ${event.selected}, which is offset ${ (event.selected * itemsPerPage) % totalCount}`
     // );
     setOffset(newOffset);
-    axios
+    axiosClient
       .get(`/api/projects/paginate?offset=${newOffset}&limit=5`)
       .then((response) => {
         setProjects(response.data.project);

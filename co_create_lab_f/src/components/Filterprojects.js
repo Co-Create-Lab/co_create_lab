@@ -4,9 +4,9 @@ import {
   customStylesFilter,
 } from "../const";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import Select, { clearValue, clear, InputActionMeta } from "react-select";
 import { useNavigate } from "react-router-dom";
+import axiosClient from "../axiosClient";
 
 export default function Filterprojects({
   setProjects,
@@ -88,7 +88,7 @@ export default function Filterprojects({
   const sort = (e) => {
     e.preventDefault();
     setLoadingSpinner(true);
-    axios
+    axiosClient
       .get(
         `/api/projects/sort?start_date=${sortCriteriaStartDate}&createdAt=${sortCriteriaCreatedAt}&views=${sortCriteriaViews}&likes=${sortCriteriaLikes}`
       )
@@ -176,7 +176,7 @@ export default function Filterprojects({
   const handleFiltering = (e) => {
     // e.preventDefault();
     setLoadingSpinner(true);
-    axios
+    axiosClient
       .get(
         `/api/projects/search?keyword=${keyword}&location=${location}&start_date=${start_date}&categories=${categories}&tech_stack=${tech_stack}`,
         {
@@ -201,7 +201,7 @@ export default function Filterprojects({
   };
 
   const filterSort = (e) => {
-    axios
+    axiosClient
       .get(
         `/api/projects/search/sort?keyword=${keyword}&location=${location}&start_dateF=${start_date}&categories=${categories}&tech_stack=${tech_stack}&start_date=${sortCriteriaStartDate}&createdAt=${sortCriteriaCreatedAt}&views=${sortCriteriaViews}&likes=${sortCriteriaLikes}`,
         {
