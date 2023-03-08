@@ -116,8 +116,8 @@ export default function Projectdetail({
       .catch((err) => {
         console.log(err);
       });
-  }, [likedProject]);
-
+  }, []);
+  //console.log(likeIcon);
   const handleLike = () => {
     const findLike = likedProject.includes(user._id);
 
