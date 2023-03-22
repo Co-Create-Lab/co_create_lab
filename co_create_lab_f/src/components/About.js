@@ -3,12 +3,10 @@ import { Helmet } from "react-helmet";
 export default function About() {
   return (
     <div className="m-3 rounded">
-    
-
       <div className="dark-blue-background light-gray-text p-3 container-fluid shadow-lg">
         <div className="row dark-blue-background light-gray-text">
           <div className="col-lg-8 mb-2 dark-blue-background light-gray-text welcome-text">
-          We’re a community of people who want to work together on cool ideas.{" "}
+            We’re a community of people who want to work together on cool ideas.{" "}
             Our focus is on web and mobile apps, but we also have a lot of fun
             with games and other projects. We are all about making cool things
             with technology – no matter if you are an experienced developer or
@@ -17,7 +15,8 @@ export default function About() {
 
           <div className="col-lg-4 dark-blue-background light-gray-text">
             <h2 className="dark-blue-background light-gray-text text-end welcome-heading">
-              Who is <br></br> <span className="orange-text dark-blue-background">
+              Who is <br></br>{" "}
+              <span className="orange-text dark-blue-background">
                 Co Create Lab
               </span>
               ?
@@ -25,7 +24,6 @@ export default function About() {
           </div>
         </div>
       </div>
-
 
       <div className="light-gray-background dark-blue-text p-3 container-fluid shadow-lg">
         <div className="row light-gray-background dark-blue-text">
@@ -72,7 +70,7 @@ export default function About() {
 
           <div className="col-lg-4 dark-blue-background light-gray-text">
             <h2 className="dark-blue-background light-gray-text text-end welcome-heading">
-              What else do we do?
+              What else do we do??
             </h2>
           </div>
         </div>
